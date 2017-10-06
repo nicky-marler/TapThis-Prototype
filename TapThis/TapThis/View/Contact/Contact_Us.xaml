@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TapThis.View.Contact.Contact_Us">
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="Send_Button" Name="Send" Command="{Binding Send_Contact_Command}" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+
+        <Grid RowSpacing="0" ColumnSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+            
+            
+            <StackLayout Padding="15,15,15,0" Grid.Row="0">
+                <Grid RowSpacing="0" ColumnSpacing="0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <StackLayout Grid.Row="0" Grid.Column="0" Spacing="0">
+                        <Label Text="First*" FontSize="Micro"  />
+                        <Entry Placeholder="Nicholas" Text="{Binding Contact.First}" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="0" Grid.Column="1" Spacing="0">
+                        <Label Text="Last*" FontSize="Micro"/>
+                        <Entry  Placeholder="Logan" Text="{Binding Contact.Last}" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  Spacing="0">
+                        <Label Text="Email*" FontSize="Micro" />
+                        <Entry Placeholder="Nicholas.Logan@email.com" Text="{Binding Contact.Email}" Keyboard="Email" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  Spacing="0">
+                        <Label Text="Company" FontSize="Micro" />
+                        <Entry Text="{Binding Contact.Company}" Placeholder="Optional"/>
+                    </StackLayout>
+
+
+                </Grid>
+            </StackLayout>
+            <StackLayout Grid.Row="1" Padding="15,0,15,30">
+            <Label Text="Message*" FontSize="Micro" />
+            <Editor Text="{Binding Contact.Message}" VerticalOptions="FillAndExpand"/>
+            </StackLayout>
+
+
+
+            <!--For when Busy-->
+            <AbsoluteLayout  Grid.Row="0" Grid.RowSpan="2"
+   
+                         IsVisible="{Binding IsBusy}"
+                         BackgroundColor="DarkGray"
+                         Opacity=".5"/>
+
+            <ActivityIndicator  Grid.Row="0"  Grid.RowSpan="2"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       IsRunning="{Binding IsBusy}"
+                       IsVisible="{Binding IsBusy}"
+                       IsEnabled="True"
+                       x:Name="syncIndicator"
+           />
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

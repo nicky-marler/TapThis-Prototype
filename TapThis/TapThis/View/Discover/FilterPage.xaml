@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TapThis.FilterPage"
+             xmlns:Converter="clr-namespace:TapThis.Converter"
+             Title="{Binding Title}"
+             BindingContext="{Binding Source={x:Static Application.Current},Path=Filter}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converter:BoolSwitch_Converter x:Key="BoolSwitch"/>
+            <Converter:TimeSpanTimeObject x:Key="TimeSpan_Object"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+
+        <TableView Intent="Settings"
+                       BindingContext="{Binding Source={x:Static Application.Current},Path=Filter.Filter_Settings}" >
+            <TableRoot>
+                <TableSection Title="Main Filters">
+                    <SwitchCell x:Name="Right_Now_Switch"  Text="Right Now"  On="{Binding Right_Now}"/>
+                    <SwitchCell x:Name="Everything_Switch"  Text="All Items"  On="{Binding Type_Everything}"/>
+                    <SwitchCell Text="All Day" On="{Binding All_Day}"/>
+                </TableSection>
+
+                <TableSection Title="Day and Time" >
+                    <ViewCell >
+                        <Grid Padding="10,0,10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="Day of the Week"
+                                       VerticalOptions="Center"
+                                       Grid.Column="0"/>
+                            <Picker 
+                                    Grid.Column="2"
+                                    ItemsSource="{Binding Source ={x:Static Application.Current},Path= Filter.Days_of_Week}"
+                                    SelectedItem="{Binding Day}"
+                                    VerticalOptions="Center"
+                                    IsEnabled="{Binding Source={x:Reference Right_Now_Switch},Path=On, Converter={StaticResource Key=BoolSwitch}}"/>
+                        </Grid>
+                    </ViewCell>
+                    <ViewCell >
+                        <Grid Padding="10,0,10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="Time of Day"
+                                       VerticalOptions="Center"
+                                       Grid.Column="0"/>
+                            <TimePicker 
+                                    Grid.Column="2"
+                                    Time="{Binding Source={x:Static Application.Current},Path= Filter.Filter_Settings.Time, Converter={StaticResource Key=TimeSpan_Object}}"
+                                    
+                                    VerticalOptions="Center"
+                                    IsEnabled="{Binding Source={x:Reference Right_Now_Switch},Path=On, Converter={StaticResource Key=BoolSwitch}}"/>
+                        </Grid>
+                    </ViewCell>
+                </TableSection>
+                <TableSection Title="Type of Items">
+                    <!-- 
+                    What qualifies for a cover to be unique? 
+                    1) When a business has a normal and set cover, but has a reduced or no cover as a special.
+                    2) When a business that normally has no cover, but adds a cover if they're doing specials. 
+                    -->
+ 
+                    <SwitchCell Text="Drink"  On="{Binding Type_Drink}" 
+                                        IsEnabled="{Binding Source={x:Reference Everything_Switch},Path=On, Converter={StaticResource Key=BoolSwitch}}"/>
+                    <SwitchCell Text="Food" On="{Binding Type_Food}"
+                                        IsEnabled="{Binding Source={x:Reference Everything_Switch},Path=On, Converter={StaticResource Key=BoolSwitch}}"/>
+                    <SwitchCell Text="Unique Cover"  On="{Binding Cover}" 
+                                        IsEnabled="{Binding Source={x:Reference Everything_Switch},Path=On, Converter={StaticResource Key=BoolSwitch}}"/>
+                </TableSection>
+
+            </TableRoot>
+        </TableView>
+
+
+    </ContentPage.Content>
+</ContentPage>

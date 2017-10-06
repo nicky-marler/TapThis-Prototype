@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TapThis.Get_Items_Page"
+             xmlns:Converter="clr-namespace:TapThis.Converter"
+             Title="Items"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converter:EmptyListBool_Converter x:Key="Empty_List"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Add" Command="{Binding Add_New_Item_Command}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!--ItemSelected="BarSelected_OpenBarPage"   Handle cell clicked-->
+            <Label x:Name="Empty_Header" Text="List is empty" HorizontalTextAlignment="Center" Grid.Row="0" VerticalOptions="Center"
+                   IsVisible="{Binding Data.Item_List.Count, Converter={StaticResource Key=Empty_List}}"/>
+            
+            <ListView x:Name="Added_Items_List"  Grid.Row="0" 
+				ItemsSource="{Binding Data.Item_List}"
+		        ItemSelected="Add_Item_Page_Old"
+                HasUnevenRows="True" 
+                  IsPullToRefreshEnabled="False">
+                <ListView.Header>
+                    
+                    <!-- Put in Trigger to make invisble if count > 0 -->
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+
+                        <ViewCell>
+                        <Grid Padding="15,5,15,5" RowSpacing="0" ColumnSpacing="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                                <Label Text="{Binding Item_Name}"  FontSize="Small" TextColor="Black" Grid.Column="0" VerticalOptions="Start"/>
+                                <Label Text="{Binding Price}" FontSize="Micro" TextColor="Gray" Grid.Column="0"  Grid.Row="1" VerticalOptions="End"/>
+                            <Label Text="{Binding Type}"  FontSize="Micro" TextColor="Black" Grid.Column="1" Grid.RowSpan="2" VerticalOptions="Center"  HorizontalOptions="End"/>
+                            
+
+                        </Grid>
+
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

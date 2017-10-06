@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TapThis.SuggestPage"
+             xmlns:Converters="clr-namespace:TapThis.Converters"
+             BindingContext="{Binding Source={x:Static Application.Current},Path=Suggest}"
+             >
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="Send_Button" Name="Send" Command="{Binding Send_Suggest_Command}" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+
+            <TableView Intent="Form" HasUnevenRows="False" Grid.Row="0" 
+                       BindingContext="{Binding Source={x:Static Application.Current},Path=Suggest.Data}">
+                <TableRoot>
+                    <TableSection Title="Required Information" >
+
+                        <ViewCell>
+                            <StackLayout  Orientation="Horizontal" Padding="15,0,5,0" >
+                                <Label Text="Name: " HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalTextAlignment="Center"/>
+                                <Entry Text="{Binding Business_Name}" HorizontalOptions="FillAndExpand"/>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell Tapped="Get_Location" >
+                            <StackLayout  Orientation="Horizontal" Padding="15,0,15,0" >
+                                <Label Text="{Binding Display_Address}" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalTextAlignment="Center" />
+                            </StackLayout>
+                        </ViewCell>
+
+                    </TableSection>
+                    <TableSection
+                        Title="Optional">
+                        <ViewCell Tapped="Get_Items">
+                            <Grid Padding="15,5,15,5" RowSpacing="0" ColumnSpacing="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                               
+                                    <Label Text="Items: "  Grid.Column="0"  Grid.Row="1" />
+
+                                <Label x:Name="List_Count" Text="{Binding Count}" 
+                                        Grid.Column="1"  Grid.Row="1"/>
+                           
+                            </Grid>
+                        </ViewCell>
+                    </TableSection>
+
+                </TableRoot>
+            </TableView>
+
+            
+            <!--For when Busy-->
+            <AbsoluteLayout  Grid.Row="0"
+   
+                         IsVisible="{Binding IsBusy}"
+                         BackgroundColor="DarkGray"
+                         Opacity=".5"/>
+            
+            <ActivityIndicator 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       IsRunning="{Binding IsBusy}"
+                       IsVisible="{Binding IsBusy}"
+                       IsEnabled="True"
+                       x:Name="syncIndicator"
+            Grid.Row="0"/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TapThis.BarPage"
+             BindingContext="{Binding Source={x:Static Application.Current},Path=Selected_Bar}"
+             Title="{Binding Source={x:Static Application.Current},Path=Selected_Bar.BarName}"
+             >
+    <!-- I Changed my ViewModel to just a Model. Changing all paths that say "Selected_Bar.Bar.BarName" to "Selected_Bar.BarName"-->
+    <ContentPage.Content>
+        <StackLayout >
+
+            <ListView x:Name="Main_BarList"
+				ItemsSource="{Binding Source={x:Static Application.Current},Path=Selected_Bar.Item_Group}"
+		         IsGroupingEnabled="True"
+                      GroupDisplayBinding="{Binding Title}" 
+                      GroupShortNameBinding="{Binding ShortName}"
+                      HasUnevenRows="True"
+                      IsPullToRefreshEnabled="False" 
+                      ItemSelected="BarItem_Selected">
+
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <ViewCell>
+                            <Grid Padding="15,5,15,5" RowSpacing="0" ColumnSpacing="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="{Binding ItemName}"  FontSize="Small" TextColor="Black" Grid.Column="0" VerticalOptions="Start"/>
+                                <Label Text="{Binding Price}" FontSize="Micro" TextColor="Gray" Grid.Column="0"  Grid.Row="1" VerticalOptions="End"/>
+                                <Label Text="{Binding Hours}"  FontSize="Micro" TextColor="Black" Grid.Column="1" VerticalOptions="Start"  HorizontalOptions="End"/>
+                                <Label Text="Active" FontSize="Micro" TextColor="LightGreen" Grid.Column="1"  Grid.Row="1" VerticalOptions="End"  HorizontalOptions="End">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label"  Binding="{Binding Active}"  Value="false">
+                                            <Setter Property="TextColor" Value="Red" />
+                                            <Setter Property="Text" Value="Not Active"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+
+                            </Grid>
+
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+
+                        <ViewCell>
+                            <StackLayout Padding="5,15,5,5">
+                                <Label
+                                Text="{Binding Title}"
+                                TextColor="#F20075"
+                                   FontSize="Medium"
+                                  />
+                            </StackLayout>
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

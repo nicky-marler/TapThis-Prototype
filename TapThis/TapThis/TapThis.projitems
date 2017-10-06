@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>923dfad0-aa0f-41df-afda-c4f26d849399</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>TapThis</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Master_Detail\App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Discover\BarPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Discover\FilterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Discover\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Master_Detail\NavDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Master_Detail\NavMaster.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Master_Detail\Nav_Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Azure_Resource\WriteDB.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\EmptyListBool_Converter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\TimeSpanTimeObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Contact\Contact.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Discover\Bar_Pins.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\WriteDB\Contact.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\WriteDB\Send_Comment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\WriteDB\Send_Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\WriteDB\Send_Report.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\WriteDB\Send_Suggestion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Suggest\Suggest_Data.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Suggest\Suggest_Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Global\Time_HrMin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Contact_ViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Suggest_ViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\About\About_Us.xaml.cs">
+      <DependentUpon>About_Us.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Contact\Contact_Us.xaml.cs">
+      <DependentUpon>Contact_Us.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Master_Detail\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Discover\Bar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BarList_ViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\Discover\BarPage.xaml.cs">
+      <DependentUpon>BarPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Discover\Bar_Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\BoolSwitch_Converter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Discover\Document.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Discover\Filter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\Discover\FilterPage.xaml.cs">
+      <DependentUpon>FilterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Filter_ViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Global\Geo_Location.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Discover\Grouped_List.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\Discover\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Master_Detail\NavDetail.xaml.cs">
+      <DependentUpon>NavDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Master_Detail\NavMaster.xaml.cs">
+      <DependentUpon>NavMaster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Master_Detail\NavMenuItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\Master_Detail\Nav_Control.xaml.cs">
+      <DependentUpon>Nav_Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Azure_Resource\Query_Manager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Azure_Resource\VerifiedDB.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\Suggest\Add_Item_Page.xaml.cs">
+      <DependentUpon>Add_Item_Page.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Suggest\Get_Items_Page.xaml.cs">
+      <DependentUpon>Get_Items_Page.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Suggest\Get_Location_Page.xaml.cs">
+      <DependentUpon>Get_Location_Page.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Suggest\Mark_Map_Page.xaml.cs">
+      <DependentUpon>Mark_Map_Page.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Suggest\SuggestPage.xaml.cs">
+      <DependentUpon>SuggestPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Burn\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Model\Discover\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Model\Global\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Model\Suggest\" />
+    <Folder Include="$(MSBuildThisFileDirectory)View\Discover\" />
+    <Folder Include="$(MSBuildThisFileDirectory)View\Master_Detail\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Suggest\SuggestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Suggest\Get_Location_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Suggest\Get_Items_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Suggest\Mark_Map_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Suggest\Add_Item_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\About\About_Us.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Contact\Contact_Us.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

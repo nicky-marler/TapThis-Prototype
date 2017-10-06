@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TapThis"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+              xmlns:Converter="clr-namespace:TapThis.Converter"
+             x:Class="TapThis.MainPage"
+             Title="Discover"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converter:EmptyListBool_Converter x:Key="Empty_List"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Filter" Command="{Binding UpdateFilterPageCommand}" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <Grid RowSpacing="0" ColumnSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        
+
+
+
+        <maps:Map x:Name="User_Map"               
+                    IsVisible="True"   Grid.Row="0"  Grid.ColumnSpan="3"
+                    IsShowingUser="{Binding Is_Enabled}"
+                  />
+
+
+
+        <AbsoluteLayout x:Name="The_List"
+            BackgroundColor="WhiteSmoke"
+                         IsVisible="False"
+                        Opacity="0"
+                         Grid.Row="0"
+                         Grid.ColumnSpan="3" >
+
+
+            <ListView x:Name="Main_BarList"
+				ItemsSource="{Binding Bar_List}"
+		        ItemSelected="BarSelected_OpenBarPage"
+              HasUnevenRows="True"
+                  IsPullToRefreshEnabled="False">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="15,10,15,10" Spacing="0">
+                                <Label Text="{Binding BarName}"  FontSize="Medium" TextColor="Black"/>
+                                <Label Text="{Binding Address1}" FontSize="Small" TextColor="Gray"/>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <Label Text="List is empty" HorizontalTextAlignment="Center" IsVisible="{Binding Bar_List.Count, Converter={StaticResource Key=Empty_List}}"/> 
+                </ListView.Footer>
+            </ListView>
+        </AbsoluteLayout>
+
+        <!-- Too cover the map and list while searching-->
+        <AbsoluteLayout  Grid.Row="0"
+                         Grid.ColumnSpan="3" 
+                         IsVisible="{Binding IsBusy}"
+                         BackgroundColor="DarkGray"
+                         Opacity=".5"/>
+
+        <!-- A cool Maroon Pink TextColor="#F20075" -->
+        <AbsoluteLayout Grid.Row="1" Grid.ColumnSpan="3" Padding="0" Margin="0" BackgroundColor="White">
+            <Button x:Name="ShowHide_List_Button"
+                Text="Show List" TextColor="#03A9F4" BackgroundColor="White"
+                 AbsoluteLayout.LayoutBounds="0,0,.5,1" AbsoluteLayout.LayoutFlags="All"  Margin="0"          
+                    Clicked="ShowHide_List"  IsEnabled="{Binding IsNotBusy}"  
+                           BorderRadius="0" BorderWidth="10" BorderColor="#03A9F4"/>
+            <Button Text="Search" TextColor="#03A9F4" BackgroundColor="White"
+                    AbsoluteLayout.LayoutBounds="1,0,.5,1" AbsoluteLayout.LayoutFlags="All"
+                    Margin="0"
+              
+                  Command="{Binding GetBarItemsCommand}"
+                    CommandParameter="{Binding Source={x:Reference User_Map}, Path=VisibleRegion}"
+                    IsEnabled="{Binding IsNotBusy}"
+                           BorderRadius="0" BorderWidth="10" BorderColor="#03A9F4"/>
+        </AbsoluteLayout>
+
+        <ActivityIndicator 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       IsRunning="{Binding IsBusy}"
+                       IsVisible="{Binding IsBusy}"
+                       IsEnabled="True"
+                       x:Name="syncIndicator"
+            Grid.Row="0"
+            Grid.Column="1"/>
+
+    </Grid>
+</ContentPage>

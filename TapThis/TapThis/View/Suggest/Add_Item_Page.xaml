@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TapThis.View.Suggest.Add_Item_Page"
+             xmlns:Converter="clr-namespace:TapThis.Converter"
+             Title="Add Item">
+    
+    <!--Need to add in my converters and update my algrithms to submit a varity of minutes-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converter:TimeSpanTimeObject x:Key="TimeSpan_Object"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Delete" Clicked="Delete_Item" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+        <Grid RowSpacing="15" ColumnSpacing="0" Padding="10,15,10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+
+            <Entry Text="{Binding Item_Name}" Placeholder="Margarita" Grid.Row="0" Grid.ColumnSpan="2"/>
+            <Entry Text="{Binding Price}" Placeholder="$5.00" Grid.Row="1" Grid.Column="0"/>
+            <Picker SelectedItem="{Binding Type}" 
+                    ItemsSource="{Binding Source ={x:Static Application.Current},Path= Suggest.Item_Types}"                                   
+                    Title="Type of item" Grid.Row="1" Grid.Column="1"/>
+                    <!-- Make Type Picker -->
+
+            <StackLayout Grid.Row="2" Grid.Column="0" Spacing="0">
+                        <Label Text="Start:"/>
+                        <TimePicker
+                            Time="{Binding Start, Converter={StaticResource Key=TimeSpan_Object}}"/>
+                    </StackLayout>
+            <StackLayout Grid.Row="2" Grid.Column="1"  Spacing="0">
+                        <Label Text="End:" />
+                        <TimePicker
+                            Time="{Binding End, Converter={StaticResource Key=TimeSpan_Object}}"/>
+                    </StackLayout>
+
+
+            <StackLayout Grid.Row="3" Grid.ColumnSpan="2">
+
+                <Grid RowSpacing="10" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Days of occurrence: " Grid.Row="0" Grid.ColumnSpan="2"/>
+
+                    <Label x:Name="Sunday"
+                        Text="Sunday" FontAttributes="None" TextColor="LightGray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Add_Day"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label x:Name="Monday"
+                        Text="Monday" FontAttributes="None" TextColor="LightGray" Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Add_Day"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label x:Name="Tuesday"
+                        Text="Tuesday" FontAttributes="None" TextColor="LightGray" Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Add_Day"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label x:Name="Wednesday"
+                        Text="Wednesday" FontAttributes="None" TextColor="LightGray" Grid.Row="4" Grid.Column="0" HorizontalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Add_Day"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label x:Name="Thursday"
+                        Text="Thursday" FontAttributes="None" TextColor="LightGray" Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Add_Day"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label x:Name="Friday"
+                        Text="Friday" FontAttributes="None" TextColor="LightGray" Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Add_Day"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label x:Name="Saturday"
+                        Text="Saturday" FontAttributes="None" TextColor="LightGray" Grid.Row="4" Grid.Column="1" HorizontalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Add_Day"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    
+                </Grid>
+            </StackLayout>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TapThis.Get_Location_Page"
+             BindingContext="{Binding Source={x:Static Application.Current},Path=Suggest}">
+    <ContentPage.Content>
+
+        <StackLayout Padding="10,15,10,0" >
+            <AbsoluteLayout >
+                <Button x:Name="Current_Location_Button" IsEnabled="{Binding Is_Enabled}" Command="{Binding Source={x:Static Application.Current},Path=Suggest.Location_Current_Command}"
+                    Text="Current Location" TextColor="#03A9F4" BackgroundColor="White"
+                           BorderRadius="0" BorderWidth="10" BorderColor="#F20075" 
+                            AbsoluteLayout.LayoutBounds="0,0,.5,1" AbsoluteLayout.LayoutFlags="All"/>
+                <Button Text="Mark Location" TextColor="#03A9F4" BackgroundColor="White" Clicked="Mark_Map_Page"
+                           BorderRadius="0" BorderWidth="10" BorderColor="#F20075" 
+                             AbsoluteLayout.LayoutBounds="1,0,.5,1" AbsoluteLayout.LayoutFlags="All"/>
+            </AbsoluteLayout>
+            <StackLayout BindingContext="{Binding Source={x:Static Application.Current},Path=Suggest.Data}">
+            <Label Text="or" FontSize="Micro" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"/>
+            <Entry Placeholder="1100 Congress Ave" Text="{Binding Address}" />
+            <Entry Placeholder="Austin, Texas 78701" Text="{Binding City_State_Zip}"/>
+               
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
